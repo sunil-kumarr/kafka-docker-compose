@@ -1,0 +1,19 @@
+version: "2"
+services:
+    console:
+        image: docker.redpanda.com/vectorized/console:latest
+        restart: on-failure
+        entrypoint: /bin/sh
+        command: -c "echo \"$$CONSOLE_CONFIG_FILE\" > /tmp/config.yml; /app/console"
+        environment:
+            CONFIG_FILEPATH: /tmp/config.yml
+            CONSOLE_CONFIG_FILE: |
+                kafka:
+                  brokers: ["10.1.199.128:9092","b-1.cgmskprod.nwie62.c4.kafka.ap-south-1.amazonaws.com:9092"]
+                connect:
+                  enabled: true
+                  clusters:
+                    - name: production
+                      url: http://10.1.27.180:8001
+        ports:
+            - "8001:8080"

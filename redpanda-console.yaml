@@ -1,0 +1,7 @@
+kafka:
+    brokers: ["10.2.5.52:9092"]
+connect:
+    enabled: true
+    clusters:
+        - name: staging
+          url: http://10.2.21.115:8002

@@ -1,0 +1,19 @@
+akhq:
+    connections:
+        my-kafka-cluster:
+            properties:
+                bootstrap.servers: "10.2.5.52:9092"
+    security:
+        basic-auth:
+            - username: admin
+              password: "$2a$<hashed password>"
+              passwordHash: BCRYPT
+              groups:
+                  - admin
+            - username: reader
+              password: "<SHA-256 hashed password>"
+              groups:
+                  - reader
+micronaut:
+    security:
+        enabled: true
